@@ -1,5 +1,39 @@
 // Your code here!
+let originalHealth = 0;
+const Pokemon = class{
+    
+    constructor(name, attack, defense, health, type){
+        this.name = name;
+        this.attack = attack;
+        this.defense = defense;
+        this.health = health;
+        this.type = type;
+        originalHealth = this.health;
+
+    }
+    
+
+    takeDamage(num){
+        this.health = this.health - num;
+        if(this.health < 0){
+            this.health = 0;
+        }
+    }
+
+    attackOpponent(opponent){
+        if(opponent.defense > this.attack){
+            opponent.takeDamage(1);
+        }
+        else{
+            opponent.takeDamage(this.attack-opponent.defense)
+        }
+    }
+
+    display(){
+        return this.name.toUpperCase() + ' (' + this.type.toUpperCase() + ') ' + this.health + '/' + originalHealth;
+    }
 
 
+}
 // Don't edit this line!
 module.exports = Pokemon;
